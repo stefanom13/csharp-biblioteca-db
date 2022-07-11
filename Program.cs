@@ -6,7 +6,10 @@ List<Documento> documenti = new List<Documento>();
 List<Utente> utenti = new List<Utente>();
 
 documenti.Add(new Libro(85475, 324, "Il bello", 2008, "Romanzo", "Enzo Crudeli"));
+documenti.Add(new Dvd(57425, 114, "Micheal Jordan", 2019, "Motivazionale", "Alex Jonh"));
 documenti[0].disponibilità = true;
+documenti[1].disponibilità = true;
+
 
 Ospite ospite = new Ospite();
 utenti.Add(new Utente("Fredrici", "Michele", "michele@libero.it", "gatto123", "3271563987"));
@@ -123,35 +126,72 @@ Documento SearchInDocuments(List<Documento> documenti)
         case 2:
 
             string nomeDocumento = CercaPerTitolo();
-            documento = SearchByTitleLibrary(nomeDocumento);
+            documento = CercaPerTitoloLibreria(nomeDocumento);
             return documento;
 
         case 1:
 
-            int codiceDocumento = SearchByCode();
-            documento = SearchByCodeLibrary(codiceDocumento);
+            int codiceDocumento = CercaPerCodice();
+            documento = CercaPerCodiceLiberia(codiceDocumento);
             return documento;
 
     }
     return null;
 }
 
-Documento SearchByCodeLibrary(int codiceDocumento)
+Documento CercaPerCodiceLiberia (int codiceCercato)
 {
-    throw new NotImplementedException();
+    foreach (Documento documento in documenti)
+    {
+
+        if (documento is Libro)
+        {
+            Libro libro = (Libro)documento;
+            if (codiceCercato == libro.isbnLibro)
+            {
+                Console.WriteLine(libro.SetInformation());
+                return libro;
+            }
+        }
+        else
+        {
+            Dvd dvd = (Dvd)documento;
+            if (codiceCercato == dvd.numeroSerie)
+            {
+                Console.WriteLine(dvd.SetInformation());
+                return dvd;
+            }
+        }
+
+    }
+    return null;
 }
 
-Documento SearchByTitleLibrary(string nomeDocumento)
+Documento CercaPerTitoloLibreria(string parolaCercata)
 {
-    throw new NotImplementedException();
+    foreach (Documento documento in documenti)
+    {
+        if (parolaCercata == documento.Titolo)
+        {
+            Console.WriteLine(documento.SetInformation());
+            return documento;
+        }
+    }
+    return null;
 }
 
-int SearchByCode()
+int CercaPerCodice()
 {
-    throw new NotImplementedException();
+    Console.Write("Cerca per codice: ");
+    int codiceCercato = Int32.Parse(Console.ReadLine());
+    Console.Clear();
+    return codiceCercato;
 }
 
 string CercaPerTitolo()
 {
-    throw new NotImplementedException();
+    Console.Write("\nInserire il titolo che si vuole cercare: ");
+    string titoloCercato = Console.ReadLine();
+    Console.Clear();
+    return titoloCercato;
 }
