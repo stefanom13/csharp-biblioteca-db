@@ -16,23 +16,23 @@ namespace csharp_biblioteca_db
         }
 
 
-        public Utente RegistrazioneUtente()
+        public Utente RegistrazioneOspite()
         {
             Console.WriteLine("**** Registrazione Utente ****\n");
             string nome = Console.ReadLine();
             Console.Write("Inserire nome: {0}", nome);
 
             string cognome = Console.ReadLine();
-            Console.Write("Inserire nome: {0}", cognome);
+            Console.Write("Inserire cognome: {0}", cognome);
 
             string email = Console.ReadLine();
-            Console.Write("Inserire nome: {0}", email);
+            Console.Write("Inserire email: {0}", email);
 
             string password = Console.ReadLine();
-            Console.Write("Inserire nome: {0}", password);
+            Console.Write("Inserire password: {0}", password);
 
             string telefono = Console.ReadLine();
-            Console.Write("Inserire nome: {0}", telefono);
+            Console.Write("Inserire telefono: {0}", telefono);
 
             Utente registrazioneUser = new Utente(nome, cognome, email, password, telefono);
 
